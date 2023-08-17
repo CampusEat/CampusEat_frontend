@@ -1,18 +1,21 @@
 import React from 'react';
-
+import "./modal.css"
 import styled from "styled-components";
 
 
 
-function Modal({ isOpen, closeModal }) {
+function Modal({ isOpen, closeModal, message }) {
   return (
     <ModalOverlay style={{ display: isOpen ? "flex" : "none" }}>
-      <ModalContent><button onClick={closeModal}>X</button></ModalContent>
+      <ModalContent>
+        <button onClick={closeModal}>✕</button>
+        <p>{message}</p>
+      </ModalContent>
     </ModalOverlay>
   );
 }
 
-
+// Styled Components
 const ModalOverlay = styled.div`
   position: fixed;
   width: 100%;
@@ -27,21 +30,18 @@ const ModalOverlay = styled.div`
 const ModalContent = styled.div`
   background-color: white;
   padding: 20px;
+  padding-top:0%;
   border-radius: 5px;
 
   button {
-    font-weight: 900;
-    color: #EB4F27;
-    border-radius: 10px;
-    border: none;
-    height: 25px;
-    width: 25px;
+    font-size: 20px;
+    color: #4C4A4B;
+    border-radius: 15px;
+    height: 5px;
+    width: 10px;
     background-color:#ffffff;
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    box-shadow: none;
   }
-
-  button:active{
-    box-shadow: 0px 1px 1px rgba(0,0,0,0.25); 
     
 }
 `;
