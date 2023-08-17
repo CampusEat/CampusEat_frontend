@@ -1,41 +1,100 @@
 import React, { useState } from "react";
-import './Login.css';
-
+import styled from "styled-components";
 import QRCode from "qrcode.react";
 import * as KlipAPI from "./Klip.js";
-
 
 const DEFAULT_QR_CODE = "DEFAULT";
 const DEFAULT_ADDRESS = "0x00000000000000000000000000000";
 
-function Login(props){
 
+function Login(props) {
     const [qrvalue_auth, setQrvalue_auth] = useState(DEFAULT_QR_CODE);
     const [myAddress, setMyAddress] = useState(DEFAULT_ADDRESS);
-    
-
+  
     const redirectToKlip = () => {
-        KlipAPI.getAddress(setQrvalue_auth, async (address) => {
-            setMyAddress(address); // 지갑 주소
-            window.location.href = `../UserPage/${address}`; // 주소를 MyPage로 전달
-        });
+      KlipAPI.getAddress(setQrvalue_auth, async (address) => {
+        setMyAddress(address);
+        window.location.href = `../UserPage/${address}`;
+      });
     };
-
+  
     return (
-        <div className="LoginPage">
-            
-            <div className="circle"></div>
-            <img src="assets/image/hamburger.svg" className="hamburger" alt="hamburger"></img>
-            <h1 className="camEat">&nbsp;CAMPUS<br/>EAT</h1>
-            <button onClick={redirectToKlip} className="klip-button">
-                <img src="assets/image/klipIcon.svg" className="klipIcon" /> 클립으로 로그인
-            </button>
-            <div className="qr">
-            {qrvalue_auth !== DEFAULT_QR_CODE && (<QRCode value={qrvalue_auth}></QRCode>)}
-            </div>
-            
-        </div>
+      <LoginPage>
+        <Circle></Circle>
+        <Hamburger src="assets/image/hamburger.svg" alt="hamburger" />
+        <CamEat>&nbsp;CAMPUS<br />EAT</CamEat>
+        <Button onClick={redirectToKlip}>
+          <img src="assets/image/klipIcon.svg" className="klipIcon" />
+          클립으로 로그인
+        </Button>
+        <QRContainer>
+          {qrvalue_auth !== DEFAULT_QR_CODE && <QRCode value={qrvalue_auth} />}
+        </QRContainer>
+      </LoginPage>
     );
-}
-
+  }
+  
 export default Login;
+
+const LoginPage = styled.div`
+  background: linear-gradient(-50deg, #FF852D, #FFE380);
+  width: 390px;
+  height: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Circle = styled.div`
+  background-color: rgba(255, 255, 255, 0.200);
+  width: 180px;
+  height: 180px;
+  border-radius: 100px;
+  margin-top: 250px;
+  box-shadow: 0px 4px 4px inset rgba(0, 0, 0, 0.25);
+`;
+
+const Hamburger = styled.img`
+  width: 115px;
+  height: 104px;
+  position: absolute;
+  margin-top: 290px;
+`;
+
+const CamEat = styled.h1`
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
+  letter-spacing: 18px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.250);
+  margin-top: 10px;
+`;
+
+const Button = styled.button`
+  width: 328px;
+  height: 45px;
+  background-color: #186BED;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .klipIcon {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+  }
+`;
+
+const QRContainer = styled.div`
+  padding: 10px;
+  margin: 30px;
+`;
+
+
