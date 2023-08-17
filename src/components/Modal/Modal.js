@@ -12,7 +12,7 @@ function Modal({ isOpen, closeModal }) {
   );
 }
 
-// Styled Components
+
 const ModalOverlay = styled.div`
   position: fixed;
   width: 100%;
