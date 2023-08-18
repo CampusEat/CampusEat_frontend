@@ -27,7 +27,7 @@ function Login(props) {
         <CamEat>&nbsp;CAMPUS<br />EAT</CamEat>
         <Button onClick={redirectToKlip}>
           <img src={klipIcon} className="klipIcon" />
-          클립으로 로그인
+          클립으로 로그인.
         </Button>
         <QRContainer>
           {qrvalue_auth !== DEFAULT_QR_CODE && <QRCode value={qrvalue_auth} />}
