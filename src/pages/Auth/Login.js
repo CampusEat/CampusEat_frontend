@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import QRCode from "qrcode.react";
 import * as KlipAPI from "./Klip.js";
+import hamburger from "../../assets/images/Login/hamburger.svg";
+import klipIcon from "../../assets/images/Login/klipIcon.svg";
 
 const DEFAULT_QR_CODE = "DEFAULT";
 const DEFAULT_ADDRESS = "0x00000000000000000000000000000";
@@ -14,17 +16,17 @@ function Login(props) {
     const redirectToKlip = () => {
       KlipAPI.getAddress(setQrvalue_auth, async (address) => {
         setMyAddress(address);
-        window.location.href = `../UserPage/${address}`;
+        window.location.href = `../main`;
       });
     };
   
     return (
       <LoginPage>
         <Circle></Circle>
-        <Hamburger src="assets/image/hamburger.svg" alt="hamburger" />
+        <Hamburger src={hamburger} alt="hamburger" />
         <CamEat>&nbsp;CAMPUS<br />EAT</CamEat>
         <Button onClick={redirectToKlip}>
-          <img src="assets/image/klipIcon.svg" className="klipIcon" />
+          <img src={klipIcon} className="klipIcon" />
           클립으로 로그인
         </Button>
         <QRContainer>
@@ -33,10 +35,9 @@ function Login(props) {
       </LoginPage>
     );
   }
-  
-export default Login;
 
-const LoginPage = styled.div`
+
+  const LoginPage = styled.div`
   background: linear-gradient(-50deg, #FF852D, #FFE380);
   width: 390px;
   height: 860px;
@@ -96,5 +97,7 @@ const QRContainer = styled.div`
   padding: 10px;
   margin: 30px;
 `;
+  
+export default Login;
 
 
