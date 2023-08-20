@@ -5,7 +5,8 @@
     margin: 0 auto; /*393x2000px이 노트북 화면 가운데 출력됩니다!!*/
     display: flex;
     flex-direction: column;
-    align-items: center; /* 요소들 수직 가운데 정렬*/
+    align-items: center;
+    overflow: hidden;
     font-family: "Noto Sans KR";
   }
   
@@ -93,3 +94,58 @@
   .MintingButton:active{
     border: 1px solid #838383;
   }
+
+
+
+
+
+
+  .nfts {
+    opacity: 0; 
+    transform: translateX(-100%); 
+    transition: opacity 2s ease, transform 2s ease;
+  }
+  
+  .randomNFT {
+    opacity: 0; 
+    transform: translateX(100%); /* 초기 위치를 오른쪽으로 이동 */
+    transition: opacity 2s ease, transform 2s ease;
+  }
+  
+  .NFT.visible,
+  .randomNFT.visible {
+    opacity: 1; /* 나타날 때 투명도 조절 */
+    transform: translateX(0); /* 화면 중앙으로 이동 */
+  }
+  
+
+.NFT img,
+.Min {
+  opacity: 0; /* 초기에 숨김 */
+  transform: translateX(-100%); /* 초기 위치를 왼쪽으로 이동 */
+  transition: opacity 2s ease, transform 2s ease;
+}
+
+.NFT.visible img,
+.Min.visible {
+  opacity: 1; /* 나타날 때 투명도 조절 */
+  transform: translateX(0); /* 화면 중앙으로 이동 */
+}
+
+.HamburgerImage {
+    opacity: 0; 
+    transition: opacity 2s ease, transform 2s ease;
+  }
+  
+  .HamburgerImage.visible,
+  .nfts.visible {
+    opacity: 1; 
+
+  }
+  
+
+  .nfts.visible {
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+  
